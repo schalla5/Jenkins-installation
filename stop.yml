@@ -1,0 +1,7 @@
+---
+- hosts: all
+  user: root
+  tasks:
+
+    - name: stop jenkins
+      service: name=jenkins state=stopped
