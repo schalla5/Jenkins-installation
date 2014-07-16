@@ -3,27 +3,28 @@
   user: root
   tasks:
 
-        - name : update the package index
-	  command: apt-get update
-    
-        - name: Install Java-jre
-	  command: sudo apt-get install openjdk-7-jre -y
+    - name : update the package index
+      command: sudo apt-get update
 
-        - name: Install Java-jdk
-          command: sudo apt-get install openjdk-7-jdk -y
+    - name: Install Java-jre
+      command: sudo apt-get install openjdk-7-jre -y
 
-        - name: Configure apt key for jenkins repository
-          action: apt_key url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
+    - name: Install Java-jdk
+      command: sudo apt-get install openjdk-7-jdk -y
 
-        - name: Add jenkins APT repository
-          action: apt_repository repo='deb http://pkg.jenkins-ci.org/debian binary/' state=present
+    - name: Configure apt key for jenkins repository
+      action: apt_key url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
 
-        - name: Remove non-existing src apt repository
-          action: apt_repository repo='deb-src http://pkg.jenkins-ci.org/debian binary/' state=absent
+    - name: Add jenkins APT repository
+      action: apt_repository repo='deb http://pkg.jenkins-ci.org/debian binary/' state=present
 
-        - name : add source.list
-          command: sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+    - name: Remove non-existing src apt repository
+      action: apt_repository repo='deb-src http://pkg.jenkins-ci.org/debian binary/' state=absent
 
-        - name : install jenkins
-          command: sudo apt-get install jenkins -y
+    - name : add source.list
+      command: sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+    - name : install jenkins
+      command: sudo apt-get install jenkins -y
+
 										    
