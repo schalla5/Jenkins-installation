@@ -26,5 +26,3 @@
 
     - name : install jenkins
       command: sudo apt-get install jenkins -y
-
-										    
