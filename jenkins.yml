@@ -4,7 +4,7 @@
   tasks:
 
         - name : update the package index
-	  command: sudo apt-get update
+	  command: apt-get update
     
         - name: Install Java-jre
 	  command: sudo apt-get install openjdk-7-jre -y
