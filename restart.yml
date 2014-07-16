@@ -1,7 +1,7 @@
 ---
 - hosts: all
   user: root
-    tasks:
+  tasks:
 
-      - name: restart jenkins
-	service: name=jenkins state=restarted
+    - name: restart jenkins
+      service: name=jenkins state=restarted
