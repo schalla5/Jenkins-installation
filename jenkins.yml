@@ -1,7 +1,7 @@
 ---
 - hosts: all
   user: root
-    tasks:
+  tasks:
 
         - name : update the package index
 	  command: sudo apt-get update
