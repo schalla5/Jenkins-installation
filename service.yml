@@ -1,0 +1,41 @@
+---
+- name: Check system distribution
+  hosts: all
+  user: "{{ uservar }}"
+  sudo: true
+  tasks: 
+    - name: Group systems by distribution (e.g. Debian, Ubuntu or RedHat)
+      action: group_by key={{ ansible_os_family }}
+      changed_when: no 
+
+- name: Stop services on Ubuntu servers
+  hosts: Ubuntu
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - name: Stopping Services --  Please wait
+        service: name=jenkins state=stopped
+        register: update
+      - name: Group systems that updated
+        action: group_by key=update_{{ update.changed }}
+        changed_when: no 
+
+- name: Reboot the updated systems
+  hosts: update_True
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - name: Performing reboot
+        command: /sbin/shutdown -r now "REASON -- Security Patch Management"
+
+- name: validate the server comes back online
+  hosts: update_True
+  gather_facts: false
+  user: "{{ uservar }}"
+  tasks:
+      - name: Waiting for system(s) to go down
+        wait_for: host={{ inventory_hostname }} port=22 state=stopped timeout=360
+        connection: local
+        sudo: false
