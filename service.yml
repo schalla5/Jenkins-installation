@@ -10,8 +10,6 @@
 
 - name: Stop services on Ubuntu servers
   hosts: all
-  max_fail_percentage: 10
-  serial: 1
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
