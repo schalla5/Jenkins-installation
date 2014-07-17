@@ -9,7 +9,7 @@
       changed_when: no 
 
 - name: Stop services on Ubuntu servers
-  hosts: Ubuntu
+  hosts: all
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
