@@ -1,0 +1,10 @@
+---
+- hosts: all
+- name: Send e-mail to a bunch of users, attaching files
+- local_action: mail
+                host='192.168.33.10'
+                subject="Ansible-report"
+                body="Hello, this is an e-mail. I hope you like it ;-)"
+                from="srikanth.challa@bestbuy.com (Srikanth Challa)"
+                to="Srikanth CHalla <srikanth.challa@bestbuy.com>"
+                charset=utf8
