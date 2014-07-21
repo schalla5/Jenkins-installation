@@ -1,6 +1,9 @@
 ---
-- hosts: all
-  user: root
+- name: Stop services on Ubuntu servers
+  hosts: all
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
   tasks:
 
     - name: stop jenkins
