@@ -4,7 +4,7 @@
   tasks: 
     - name: Send email
       local_action: mail
-        host=127.0.0.1
+        host=168.94.0.1
         port:25
         subject="Ansible test mail"
         body="Testing email"
