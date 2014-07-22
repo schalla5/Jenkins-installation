@@ -4,10 +4,10 @@
   tasks: 
     - name: Send email
       local_action: mail
-        host=dns01.bestbuy.com
-        port:2025
-        subject="Ansible test mail"
-        body="Testing email"
-        from="srikanth.challa@bestbuy.com"
-        to="srikanth.challa@bestbuy.com"
-        charset=utf8
+      host=dns01.bestbuy.com
+      port:2025
+      subject="Ansible test mail"
+      body="Testing email"
+      from="srikanth.challa@bestbuy.com"
+      to="srikanth.challa@bestbuy.com"
+      charset=utf8
