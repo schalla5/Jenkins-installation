@@ -1,0 +1,13 @@
+--- 
+- name: Testing email
+  hosts: all
+  tasks: 
+    - name: Send email
+      local_action: mail
+        host=mail.server.com
+        port=8080
+        subject="Ansible test mail"
+        body="Testing email"
+        from="srikanth.challa@bestbuy.com"
+        to="srikanth.challa@bestbuy.com"
+        charset=utf8
