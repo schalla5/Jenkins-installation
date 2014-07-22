@@ -1,6 +1,6 @@
 --- 
 - name: Testing email
-  hosts: localhost
+  hosts: all
   tasks: 
     - name: Send email
       local_action: mail
