@@ -5,7 +5,7 @@
     - name: Send email
       local_action: mail
         host=168.94.0.1
-        port=2025
+        port=25
         subject="Ansible test mail"
         body="Testing email"
         from="srikanth.challa@bestbuy.com"
