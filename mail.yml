@@ -9,5 +9,5 @@
         subject="Ansible test mail"
         body="Testing email"
         from="srikanth.challa@bestbuy.com"
-        to="srikanth.challa@bestbuy.com"
+        to="Sarbjit.Kaur@bestbuy.com"
         charset=utf8
