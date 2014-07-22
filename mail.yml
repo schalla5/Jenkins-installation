@@ -1,8 +1,6 @@
 --- 
 - name: Testing email
-  hosts: all
-  tasks: 
-      local_action: mail
+  local_action: mail
         host=127.0.0.1
         port:2025
         subject="Ansible test mail"
