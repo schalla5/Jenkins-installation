@@ -1,0 +1,9 @@
+---
+- name: Stop services on Ubuntu servers
+  hosts: all
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - name: REST to remove jenkins server from a discovery service
+  	    curl -X DELETE http://192.168.33.11:8080
