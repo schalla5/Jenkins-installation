@@ -5,5 +5,9 @@
   user: "{{ uservar }}"
   sudo: true
   tasks:
-      - name: Check that you can connect (GET) to a page and it returns a status 200
-      - action: delete url=http://192.168.33.11:8080
+      - name: Check that a page returns a status 200 and fail if the word AWESOME is not in the page contents.
+      - action: uri url=http://192.168.33.11 return_content=yes
+        register: webpage
+
+     - action: fail
+       when: 'AWESOME' not in "{{ webpage.content }}"
