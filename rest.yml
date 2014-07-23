@@ -6,4 +6,4 @@
   sudo: true
   tasks:
       - name: Check that you can connect (GET) to a page and it returns a status 200
-      - uri: url=http://192.168.33.11:8080
+      - method: delete url=http://192.168.33.11:8080
