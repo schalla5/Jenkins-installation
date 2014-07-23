@@ -1,5 +1,5 @@
 ---
-- name: Stop services on Ubuntu servers
+- name: remove jenkins server
   hosts: all
   gather_facts: false
   user: "{{ uservar }}"
