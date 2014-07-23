@@ -5,6 +5,5 @@
   user: "{{ uservar }}"
   tasks:
       - name: remove jenkins server
-        wait_for: host={{ inventory_hostname }} port=8080 state=absent
-        connection: local
-        sudo: false
+        action: DELETE host={{ inventory_hostname }} port=8080
+        
