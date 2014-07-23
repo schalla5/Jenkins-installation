@@ -11,3 +11,4 @@
 
       - action: fail
         when: 'AWESOME' not in "{{ webpage.content }}"
+        when: '"ok" in result.stdout'
