@@ -6,4 +6,4 @@
   sudo: true
   tasks:
       - name: REST to remove jenkins server from a discovery service
-        command: DELETE http://192.168.33.11:8080
+        command: curl -X DELETE "http://192.168.33.11:8080"
