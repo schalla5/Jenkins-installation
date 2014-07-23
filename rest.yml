@@ -5,6 +5,6 @@
   user: "{{ uservar }}"
   tasks:
       - name: remove jenkins server
-        wait_for: host={{ inventory_hostname }} port=22 state=absent
+        wait_for: host={{ inventory_hostname }} port=8080 state=absent
         connection: local
         sudo: false
