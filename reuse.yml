@@ -1,0 +1,13 @@
+---
+- name: Stop services on Ubuntu servers
+  hosts: all
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - name: Stopping Services --  Please wait
+        service: name=jenkins state=stopped
+      - name: Performing reboot
+        command: /sbin/shutdown -r now "REASON -- Security Patch Management"
+      - name: Startning Services --  Please wait
+        service: name=jenkins state=started
