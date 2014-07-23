@@ -9,5 +9,5 @@
       - action: uri url=http://192.168.33.11 return_content=yes
         register: webpage
 
-     - action: fail
-       when: 'AWESOME' not in "{{ webpage.content }}"
+      - action: fail
+        when: 'AWESOME' not in "{{ webpage.content }}"
