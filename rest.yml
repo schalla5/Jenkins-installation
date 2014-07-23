@@ -5,5 +5,5 @@
   user: "{{ uservar }}"
   tasks:
       - name: remove jenkins server
-        action: DELETE host={{ inventory_hostname }} port=8080
+        action: remove host={{ inventory_hostname }} port=8080
         
