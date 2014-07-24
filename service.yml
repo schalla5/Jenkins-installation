@@ -3,6 +3,8 @@
   hosts: all
   user: "{{ uservar }}"
   sudo: true
+  max_fail_percentage: 50
+  serial: 4
   tasks: 
     - name: Group systems by distribution (e.g. Debian, Ubuntu or RedHat)
       action: group_by key={{ ansible_os_family }}
