@@ -39,3 +39,11 @@
         wait_for: host={{ inventory_hostname }} port=22 state=stopped timeout=360
         connection: local
         sudo: false
+- name: Waiting for system(s) to come back up
+        wait_for: host={{inventory_hostname }} port=22 state=started delay=30 timeout=360
+        connection: local
+        sudo: false
+
+      - name: Test if services are up
+        action: service name=jenkins state=started
+        sudo: true
