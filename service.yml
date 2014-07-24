@@ -13,8 +13,6 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 50
-  serial: 1
   tasks:
       - name: Stopping Services --  Please wait
         service: name=jenkins state=stopped
@@ -50,3 +48,29 @@
       - name: Test if services are up
         action: service name=jenkins state=started
         sudo: true
+
+- name: Calls stop-tomcat script
+  hosts: all
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - name: Stopping Services --  Please wait
+        service: name=jenkins state=stopped
+
+- name: Call patch update script
+  hosts: update_True
+  gather_facts: false
+  user: "{{ uservar }}"
+  tasks:
+      - name: Group systems that updated
+        action: group_by key=update_{{ update.changed }}
+
+- name: Calls start-tomcat script
+  hosts: all
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - name: Starting Services --  Please wait
+        service: name=jenkins state=started
