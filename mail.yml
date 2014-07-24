@@ -1,13 +1,13 @@
 --- 
-- name: Testing email
-  hosts: 127.0.0.1
-  tasks: 
-    - name: Send email
-      local_action: mail
-        host=outlook.office365.com
-        port=25
-        subject="Ansible test mail"
-        body="Testing email"
-        from="srikanth.challa@bestbuy.com"
-        to="srikanth.challa@bestbuy.com"
-        charset=utf8
+# Example playbook sending mail to root
+- local_action: mail msg='System {{ inventory_hostname }} has been successfully provisioned.'
+
+# Send e-mail to a bunch of users, attaching files
+- local_action: mail
+                host='127.0.0.1'
+                port=2025
+                subject="Ansible test mail"
+                body="Testing email"
+                from="srikanth.challa@bestbuy.com"
+                to="srikanth.challa@bestbuy.com"
+                charset=utf8
