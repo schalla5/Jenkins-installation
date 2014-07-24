@@ -76,7 +76,7 @@
         service: name=jenkins state=started
         
 - name: Example playbook sending mail to root
-  hosts: all
+  hosts: 127.0.0.1
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
