@@ -76,9 +76,13 @@
         service: name=jenkins state=started
         
 - name: Example playbook sending mail to root
-- local_action: mail msg='System {{ inventory_hostname }} has been successfully provisioned.'
+  hosts: all
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  tasks:
+      - local_action: mail msg='System {{ inventory_hostname }} has been successfully provisioned.'
 
-- local_action: mail
                 host='127.0.0.1'
                 port=2025
                 subject="Ansible test mail"
