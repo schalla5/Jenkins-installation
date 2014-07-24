@@ -14,7 +14,7 @@
   user: "{{ uservar }}"
   sudo: true
   max_fail_percentage: 50
-  serial: 4
+  serial: 1
   tasks:
       - name: Stopping Services --  Please wait
         service: name=jenkins state=stopped
