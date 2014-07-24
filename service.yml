@@ -75,10 +75,9 @@
       - name: Starting Services --  Please wait
         service: name=jenkins state=started
         
-# Example playbook sending mail to root
+- name: Example playbook sending mail to root
 - local_action: mail msg='System {{ inventory_hostname }} has been successfully provisioned.'
 
-# Send e-mail to a bunch of users, attaching files
 - local_action: mail
                 host='127.0.0.1'
                 port=2025
