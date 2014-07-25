@@ -85,5 +85,6 @@
         subject="Ansible-report Test-mail"
         body="Notify email logfile pager website of failure"
         from="srikanth.challa@bestbuy.com"
-        to="srikanth.challa@bestbuy.com, Jeff.Sussna@bestbuy.com"
+        to="srikanth.challa@bestbuy.com"
+        attach="/var/log/apache2/error.log"
         charset=utf8
