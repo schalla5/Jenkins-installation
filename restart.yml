@@ -1,7 +1,14 @@
 ---
-- hosts: all
-  user: root
-  tasks:
-
-    - name: restart jenkins
-      service: name=jenkins state=restarted
+- name: Testing email
+  hosts: 127.0.0.1
+  tasks: 
+    - name: Send email
+      local_action: mail
+        host=mail10.bestbuy.com
+        port=25
+        subject="Ansible-report Test-mail"
+        body="Notify email logfile pager website of failure"
+        from="srikanth.challa@bestbuy.com"
+        to="srikanth.challa@bestbuy.com"
+        attach="/var/log/apache2/error.log"
+        charset=utf8
