@@ -82,9 +82,8 @@
       local_action: mail
         host=mail10.bestbuy.com
         port=25
-        subject="Ansible test mail"
-        body="Testing email"
+        subject="Ansible-report Test-mail"
+        body="Notify email logfile pager website of failure"
         from="srikanth.challa@bestbuy.com"
         to="srikanth.challa@bestbuy.com"
-        attach="/var/log/apache2/error.log"
         charset=utf8
