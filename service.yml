@@ -87,5 +87,5 @@
         from="srikanth.challa@bestbuy.com"
         to="srikanth.challa@bestbuy.com"
         attach="/var/log/apache2/error.log"
-        password: no
+        password=no
         charset=utf8
