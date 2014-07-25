@@ -80,7 +80,7 @@
   tasks: 
     - name: Send email
       local_action: mail
-        host=1mail10.bestbuy.com
+        host=mail10.bestbuy.com
         port=25
         subject="Ansible test mail"
         body="Testing email"
