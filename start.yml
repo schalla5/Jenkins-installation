@@ -5,3 +5,4 @@
 
     - name: start jenkins
       service: name=jenkins state=started
+      ignore_errors: no
