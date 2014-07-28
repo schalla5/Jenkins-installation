@@ -3,7 +3,7 @@
   hosts: all
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   serial: 5
   tasks: 
     - name: Group systems by distribution (e.g. Debian, Ubuntu or RedHat)
@@ -15,7 +15,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   serial: 5
   tasks:
       - name: Stopping Services --  Please wait
@@ -30,7 +30,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   serial: 5
   tasks:
       - name: Performing reboot
@@ -40,7 +40,7 @@
   hosts: update_True
   gather_facts: false
   user: "{{ uservar }}"
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   serial: 5
   tasks:
       - name: Waiting for system(s) to go down
@@ -62,7 +62,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   serial: 5
   tasks:
       - name: Stopping Services --  Please wait
@@ -73,7 +73,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   serial: 5
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   tasks:
       - name: Group systems that updated
         action: group_by key=update_{{ update.changed }}
@@ -83,7 +83,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 30
+  max_fail_percentage: 10
   serial: 5
   tasks:
       - name: Starting Services --  Please wait
