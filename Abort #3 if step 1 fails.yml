@@ -1,0 +1,103 @@
+---
+- name: Check system distribution
+  hosts: vm's
+  user: "{{ uservar }}"
+  sudo: true
+  max_fail_percentage: 0
+  serial: 4
+  tasks: 
+    - name: Group systems by distribution (e.g. Debian, Ubuntu or RedHat)
+      action: group_by key={{ ansible_os_family }}
+      changed_when: no 
+
+- name: Stop services on Ubuntu servers
+  hosts: vm's
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  max_fail_percentage: 0
+  serial: 4
+  tasks:
+      - name: Stopping Services --  Please wait
+        service: name=jenkins state=stopped
+        register: update
+      - name: Group systems that updated
+        action: group_by key=update_{{ update.changed }}
+        changed_when: no 
+
+- name: Reboot the updated systems
+  hosts: update_True
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  max_fail_percentage: 0
+  serial: 4
+  tasks:
+      - name: Performing reboot
+        command: /sbin/shutdown -r now "REASON -- Security Patch Management"
+
+- name: validate the server comes back online
+  hosts: update_True
+  gather_facts: false
+  user: "{{ uservar }}"
+  max_fail_percentage: 0
+  serial: 4
+  tasks:
+      - name: Waiting for system(s) to go down
+        wait_for: host={{ inventory_hostname }} port=22 state=stopped timeout=360
+        connection: local
+        sudo: false
+
+      - name: Waiting for system(s) to come back up
+        wait_for: host={{inventory_hostname }} port=22 state=started delay=30 timeout=360
+        connection: local
+        sudo: false
+
+      - name: Test if services are up
+        action: service name=jenkins state=started
+        sudo: true
+
+- name: Calls stop-tomcat script
+  hosts: vm's
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  max_fail_percentage: 0
+  serial: 4
+  tasks:
+      - name: Stopping Services --  Please wait
+        service: name=jenkins state=stopped
+
+- name: Call patch update script
+  hosts: update_True
+  gather_facts: false
+  user: "{{ uservar }}"
+  serial: 4
+  max_fail_percentage: 0
+  tasks:
+      - name: Group systems that updated
+        action: group_by key=update_{{ update.changed }}
+
+- name: Calls start-tomcat script
+  hosts: vm's
+  gather_facts: false
+  user: "{{ uservar }}"
+  sudo: true
+  max_fail_percentage: 0
+  serial: 4
+  tasks:
+      - name: Starting Services --  Please wait
+        service: name=jenkins state=started
+
+- name: Testing email
+  hosts: localhost
+  tasks: 
+    - name: Send email
+      local_action: mail
+        host=mail10.bestbuy.com
+        port=25
+        subject="Ansible-report Test-mail"
+        body="Notify email logfile pager website of failure"
+        from="srikanth.challa@bestbuy.com"
+        to="srikanth.challa@bestbuy.com"
+        charset=utf8
