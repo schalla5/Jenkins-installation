@@ -3,7 +3,7 @@
   hosts: vm's
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 25
+  max_fail_percentage: 5
   serial: 4
   tasks: 
     - name: Group systems by distribution (e.g. Debian, Ubuntu or RedHat)
@@ -15,8 +15,8 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 0
-  serial: 25
+  max_fail_percentage: 5
+  serial: 4
   tasks:
       - name: Stopping Services --  Please wait
         service: name=jenkins state=stopped
@@ -30,7 +30,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 25
+  max_fail_percentage: 5
   serial: 4
   tasks:
       - name: Performing reboot
@@ -40,7 +40,7 @@
   hosts: update_True
   gather_facts: false
   user: "{{ uservar }}"
-  max_fail_percentage: 25
+  max_fail_percentage: 5
   serial: 4
   tasks:
       - name: Waiting for system(s) to go down
@@ -62,7 +62,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 25
+  max_fail_percentage: 5
   serial: 4
   tasks:
       - name: Stopping Services --  Please wait
@@ -73,7 +73,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   serial: 4
-  max_fail_percentage: 25
+  max_fail_percentage: 5
   tasks:
       - name: Group systems that updated
         action: group_by key=update_{{ update.changed }}
@@ -83,7 +83,7 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 25
+  max_fail_percentage: 5
   serial: 4
   tasks:
       - name: Starting Services --  Please wait
