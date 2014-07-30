@@ -3,7 +3,7 @@
   hosts: all
   sudo: true
   vars:
-    restore: no
+    restore: yes
     pulldest: /tmp
   tasks:
       - name: pull etc keys for tower
