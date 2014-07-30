@@ -3,8 +3,8 @@
   hosts: vm's
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks: 
     - name: Group systems by distribution (e.g. Debian, Ubuntu or RedHat)
       action: group_by key={{ ansible_os_family }}
@@ -15,8 +15,8 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks:
       - name: Stopping Services --  Please wait
         service: name=jenkins state=stopped
@@ -30,8 +30,8 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks:
       - name: Performing reboot
         command: /sbin/shutdown -r now "REASON -- Security Patch Management"
@@ -40,8 +40,8 @@
   hosts: update_True
   gather_facts: false
   user: "{{ uservar }}"
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks:
       - name: Waiting for system(s) to go down
         wait_for: host={{ inventory_hostname }} port=22 state=stopped timeout=360
@@ -63,8 +63,8 @@
   user: "{{ uservar }}"
   sudo: true
   tasks:
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks:
       - name: Stopping Services --  Please wait
         service: name=jenkins state=stopped
@@ -73,8 +73,8 @@
   hosts: update_True
   gather_facts: false
   user: "{{ uservar }}"
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks:
       - name: Group systems that updated
         action: group_by key=update_{{ update.changed }}
@@ -84,8 +84,8 @@
   gather_facts: false
   user: "{{ uservar }}"
   sudo: true
-  max_fail_percentage: 5
-  serial: 4
+  max_fail_percentage: 25
+  serial: 1
   tasks:
       - name: Starting Services --  Please wait
         service: name=jenkins state=started
