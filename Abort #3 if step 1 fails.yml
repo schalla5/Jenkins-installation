@@ -65,6 +65,7 @@
   tasks:
   max_fail_percentage: 5
   serial: 1
+  tasks:
       - name: Stopping Services --  Please wait
         service: name=jenkins state=stopped
 
