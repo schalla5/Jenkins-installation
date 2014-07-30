@@ -29,3 +29,33 @@
       - name: restore 192.168.33.10 db to 192.168.33.20
         shell: awx-manage loaddata {{ pulldest }}/db.json
         when: inventory_hostname == "192.168.33.20"
+        
+      - name: stop some ubuntu services
+        service: name={{ item }} state=stopped
+        with_items:
+        - supervisor
+        - apache2
+        when: ansible_os_family == "ubuntu" and inventory_hostname == "192.168.33.20"
+        
+      - name: sync keys and configs for tower up
+        synchronize: src={{ pulldest }}/tower.etc/awx dest=/etc/
+        when: inventory_hostname == "192.168.33.20"
+
+      - name: sync var lib awx up
+        synchronize: src={{ pulldest }}/tower.var.lib/awx dest=/var/lib/
+        when: inventory_hostname == "192.168.33.20"
+
+      - name: ensure permissions are correct for /etc/awx
+        shell: chown -R awx.awx /etc/awx
+        when: inventory_hostname == "192.168.33.20"
+
+      - name: ensure permissions are correct for /var/lib/awx
+        shell: chown -R awx.awx /var/lib/awx
+        when: inventory_hostname == "192.168.33.20"
+
+      - name: start some ubuntu services
+        service: name={{ item }} state=started
+        with_items:
+        - supervisor
+        - apache2
+        when: ansible_os_family == "ubuntu" and inventory_hostname == "192.168.33.20"
