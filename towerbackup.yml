@@ -17,3 +17,15 @@
       - name: db dump 
         shell: awx-manage dumpdata --format=json --all > {{ pulldest }}/db.json
         when: inventory_hostname == "192.168.33.10"
+        
+      - name: pull db for tower
+        synchronize: mode=pull src=/tmp/db.json dest={{ pulldest }}/
+        when: inventory_hostname == "192.168.33.10"
+
+      - name: copy up db
+        synchronize: src={{ pulldest }}/db.json dest=/tmp/
+        when: inventory_hostname == "192.168.33.20"
+
+      - name: restore 192.168.33.10 db to 192.168.33.20
+        shell: awx-manage loaddata {{ pulldest }}/db.json
+        when: inventory_hostname == "192.168.33.20"
