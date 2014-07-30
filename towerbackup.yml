@@ -3,7 +3,7 @@
   hosts: tower1
   sudo: true
   tasks:
-  	  - name: pull etc keys for tower
+      - name: pull etc keys for tower
  		    synchronize: mode=pull src=/etc/awx dest={{ pulldest }}/tower.etc
         when: inventory_hostname == "tower1"
 
