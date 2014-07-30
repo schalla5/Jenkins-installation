@@ -1,6 +1,6 @@
 ---
 - name: Backup Tower and Restore to Second Host 
-  hosts: 192.168.33.10
+  hosts: all
   sudo: true
   vars:
     restore: no
