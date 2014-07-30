@@ -1,0 +1,15 @@
+---
+- name: Backup Tower and Restore to Second Host 
+  hosts: tower1
+  sudo: true
+  tasks:
+  	  - name: pull etc keys for tower
+ 		    synchronize: mode=pull src=/etc/awx dest={{ pulldest }}/tower.etc
+        when: inventory_hostname == "tower1"
+
+      - name: pull var lib awx for tower
+        synchronize: mode=pull src=/var/lib/awx dest={{ pulldest }}/tower.var.lib
+        when: inventory_hostname == "tower1"
+  vars:
+  restore: yes
+  pulldest: /tmp
