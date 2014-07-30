@@ -11,5 +11,4 @@
         synchronize: mode=pull src=/var/lib/awx dest={{ pulldest }}/tower.var.lib
         when: inventory_hostname == "tower1"
   vars:
-  restore: yes
   pulldest: /tmp
