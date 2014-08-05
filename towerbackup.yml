@@ -5,6 +5,6 @@
   tasks:
 
     - name: change the directory path
-      command: /tower2
+      src_dir = "C:\\tower2\\"
       name: destroy the vagrant box
       command: vagrant destroy
