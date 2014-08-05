@@ -5,5 +5,5 @@
   tasks:
 
     - name: change the directory path
-      src_dir = "C:\\tower2\\"
+      chdir: "C:\\tower2\\"
       local_action: vagrant destroy
