@@ -4,7 +4,7 @@
   sudo: true
   tasks:
 
-  	- name: change the directory path
+    - name: change the directory path
   	  command: cd C:\tower2
   	- name: destroy the vagrant box
   	  command: vagrant destroy
