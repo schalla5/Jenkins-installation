@@ -6,4 +6,4 @@
 
     - name: change the directory path
       src_dir = "C:\\tower2\\"
-      action: vagrant destroy
+      local_action: vagrant destroy
